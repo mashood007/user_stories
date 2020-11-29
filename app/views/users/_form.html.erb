@@ -1,0 +1,29 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %></h2>
+
+      <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-label-group">
+    <label for="inputEmail"> Name</label>
+    <%=form.text_field :name, class: "form-control"%>
+  </div>
+  <div class="form-label-group">
+    <label for="inputEmail">Email</label>
+    <%=form.text_field :email, class: "form-control"%>
+  </div>
+  <div class="form-label-group">
+    <label for="inputPassword">Password</label>
+    <%= form.password_field :password, class: "form-control"%>
+  </div>
+  <br>
+  <%= form.submit "Sign up", class: "btn btn-lg btn-primary btn-block text-uppercase"%>
+  <hr class="my-4">
+<%end%>

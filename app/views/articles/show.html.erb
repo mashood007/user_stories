@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="card my-5">
+        <div class="card-body">
+            <div class="content text-center">
+              <div class="row ">
+                <div class="col-8 h5 bg-warning">
+                  <%= @article.title%>
+                </div>
+                <div class="col-4 text-right">
+                  Posted By:
+                  <%= @article.user.name%>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4 offset-8 text-right">
+                 Status:
+                 <%= @article.status%>
+                </div>
+              </div>
+              <div class="row text-center">
+                <%= @article.content.html_safe%>
+              </div>
+              <div class="row ">
+                <div class="col-10 bg-info">
+                  Categories
+                </div>
+                <% @article.categories.each do |category|%>
+                  <div class="col-3 bg-info border">
+                    <%= category.name%>
+                  </div>
+                <%end%>
+              </div>              
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

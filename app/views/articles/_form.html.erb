@@ -1,0 +1,34 @@
+<%= form_with(model: article, local: true) do |form| %>
+  <% if article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(article.errors.count, "error") %></h2>
+
+      <ul>
+        <% article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-label-group">
+    <label for="inputEmail">Title</label>
+    <%=form.text_field :title, class: "form-control"%>
+  </div>
+  <div class="form-label-group">
+    <label for="inputEmail">Text</label>
+    <%=form.text_area :content, class: "form-control"%>
+  </div>
+  <div class="form-label-group">
+    <label for="inputEmail">Status</label>
+    <%=form.select :status, Article.statuses, class: "form-control"%>
+  </div>    
+  <div class="form-label-group">
+    <%= form.fields_for :article_categories do |ac_form| %>
+      <%= ac_form.collection_select(:category_id, Category.all, :id, :name, {prompt: 'You can select multiple categories ...'}, { class: 'form-control' }) %>
+    <% end %>
+  </div>  
+  <br>
+  <%= form.submit "Add", class: "btn btn-lg btn-primary btn-block text-uppercase"%>
+  <hr class="my-4">
+<%end%>

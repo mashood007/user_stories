@@ -1,0 +1,18 @@
+<div class="container">
+    <table class="table table-bordered">
+    <%@articles.each_with_index do |article, index|%>
+        <tr>
+        <td><%= index+1%></td>
+        <td>
+          <%= link_to article.title, article_path(article), class: "btn btn-link"%>
+        </td>
+        <td>
+          <%= article.created_at%>
+        </td>
+        </tr>
+    <%end%>
+    </table>
+    <hr />
+    <%= paginate @articles %>
+    <%= page_entries_info @articles %>
+</div>
