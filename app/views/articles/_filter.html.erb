@@ -1,0 +1,27 @@
+ 
+<div class="">
+    <%=  form_tag articles_url,method: :get, class: "" do%>
+        <div class="form-label-group ">
+            <label for="inputEmail">Enter Article title or contents</label>
+            <%=text_field_tag 'text', "",class: "form-control"%>
+        </div>
+        <div class="form-label-group ">
+            <label for="inputEmail">Posted By</label>
+            <%=select_tag "users", options_from_collection_for_select(@users, "id", "name"), class: "form-control"%>
+        </div>
+        <div class="form-label-group ">
+            <label for="inputEmail">Categories</label>
+            <ul>
+            <% @categories.each do |category| %>
+                <li>
+                    <%= check_box_tag 'category_ids[]', category.id -%>
+                    <%= h category.name -%>
+                </li>
+            <% end %>
+            </ul>
+        </div>
+        <br>
+        <%= button_tag 'Search', class: "btn btn-lg btn-primary btn-block text-uppercase"%>
+        <hr class="my-4">
+    <%end%>
+</div>

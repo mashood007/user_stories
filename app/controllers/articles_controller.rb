@@ -2,7 +2,9 @@ class ArticlesController < ApplicationController
   before_action :authenticate, except: [:index, :show]
 
   def index
-    @articles = Article.page(params[:page]).per(10).includes(:user)
+    @articles = Article.search(params).page(params[:page]).per(10).includes(:user)
+    @categories = Category.all
+    @users = User.all
   end
 
   def new
